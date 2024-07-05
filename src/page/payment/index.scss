@@ -1,0 +1,98 @@
+.payment-page {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .payment-page h1 {
+    font-size: 28px;
+    color: #2b0b44;
+  }
+  
+  .payment-page__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 30px;
+  }
+  
+  .payment-page__details {
+    flex: 1;
+  }
+  
+  .payment-page__details h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Container for the table to round only its outer border */
+  .table-container {
+    border: 1px solid #ddd;
+    border-radius: 10px; /* Rounds only the outer border */
+    overflow: hidden; /* Ensures content doesn’t overflow the rounded corners */
+    margin-bottom: 20px;
+  }
+  
+  .payment-page__details table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse cell borders */
+  }
+  
+  .payment-page__details td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Internal cell borders */
+  }
+  
+  /* Optional: Style the first cell in each row for more control */
+  .payment-page__details td:first-child {
+    /* Custom styling for the first cell */
+  }
+  
+  /* Optional: Style the last cell in each row for more control */
+  .payment-page__details td:last-child {
+    /* Custom styling for the last cell */
+  }
+  
+  .payment-page__terms {
+    margin: 20px 0;
+  }
+  
+  .payment-page__terms label {
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .payment-page__terms a {
+    color: #673ab7;
+    text-decoration: none;
+  }
+  
+  .payment-page__terms a:hover {
+    text-decoration: underline;
+  }
+  
+  .checkout-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #673ab7;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .checkout-button:hover {
+    background-color: #4b2373;
+  }
+  
+  .payment-page__qr img {
+    max-width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }

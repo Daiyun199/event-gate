@@ -1,0 +1,57 @@
+.button{
+    padding:5px 20px;
+    border:none;
+    border-radius: 4px;
+    background-color: black;
+    &--Login {
+        background-color: rgba(247, 98, 148, 0.815);
+        width:100%;
+        padding:15px;
+        font-size: 15px;
+        color: white;
+        border-radius: 25px;
+
+    }
+    &--custom{
+        background-color: transparent;
+        color: #fff;
+        border: 0.5px solid white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 50px;
+    }
+    &--custom2{
+        background-color: transparent;
+        color: #fff;
+        // border: 0.5px solid white;
+        padding: 20px 45px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 50px;
+        white-space: nowrap; /* Prevents the text from wrapping */
+        overflow: hidden;    /* Hides the overflowed text */
+        text-overflow: ellipsis; /* Adds "..." at the end of the text if it's too long */
+    }
+    // &--custom3{
+       
+    //     color: white;
+    //     // border: 0.5px solid white;
+    //     padding: 20px 45px;
+    //     text-align: center;
+    //     text-decoration: none;
+    //     display: inline-block;
+    //     font-size: 16px;
+    //     margin: 4px 2px;
+    //     cursor: pointer;
+    //     border-radius: 50px;
+    // }
+}

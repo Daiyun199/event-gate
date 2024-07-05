@@ -1,0 +1,105 @@
+.footer{
+    background-color: #30134E;
+    color:white;
+    .wrapper{
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        flex-wrap: wrap;
+        gap:80px;
+    }
+    &__section{
+        // h3 {
+        //     color: #ff4081; // Heading color
+        //     margin-bottom: 20px;
+        // }
+
+        // p {
+        //     margin-bottom: 20px;
+        // }
+        // &__newsletter {
+        //     display: flex;
+        //     flex-direction: column;
+
+        //     &__input {
+        //         padding: 10px;
+        //         border: none;
+        //         border-radius: 5px;
+        //         margin-bottom: 10px;
+        //         width: 100%;
+        //         max-width: 250px;
+        //     }
+
+        //     &__button {
+        //         padding: 10px;
+        //         border: none;
+        //         border-radius: 5px;
+        //         background-color: #ff4081;
+        //         color: white;
+        //         cursor: pointer;
+        //         max-width: 150px;
+        //         transition: background-color 0.3s ease;
+        //     }
+
+        //     button:hover {
+        //         background-color: #e2366a;
+        //     }
+        // }
+       &__corner{
+        flex-direction: column;
+        padding-top: 40px;
+        display: flex;
+        justify-content: center;
+        flex:2;
+        padding-bottom: 100px;
+        &__logo{
+
+        }
+        &__icon{
+            display: flex;
+            gap:10px;
+            padding-top:20px;
+        }
+       }
+       &__between{
+        padding-top: 40px;
+        flex-direction: column;
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-start;
+        flex:1;
+        h3{
+            padding-bottom: 20px;
+            padding-left: 0;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap:5px
+            
+        }
+        ul li a{
+            color: rgb(246, 246, 246);
+            text-decoration: none;
+            transition: color 0.3s ease;
+           
+        }
+       }
+    }
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+}

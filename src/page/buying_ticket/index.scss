@@ -1,0 +1,104 @@
+.ticket-booking {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ticket-booking h1 {
+    font-size: 28px;
+    color: #2b0b44;
+    text-align: center;
+  }
+  
+  .location-time {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #6c757d;
+  }
+  
+  .ticket-booking__content {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    justify-content: center;
+  }
+  .ticket-booking__details__button {
+    margin-left: auto;
+}
+  .ticket-booking__details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .ticket-booking__details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .ticket-booking__details td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .ticket-booking__details select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+//   .pay-button {
+//     align-self: center;
+//     padding: 10px 20px;
+//     border: none;
+//     border-radius: 5px;
+//     background-color: #673ab7;
+//     color: white;
+//     cursor: pointer;
+//     font-size: 16px;
+//   }
+  
+  .pay-button:hover {
+    background-color: #4b2373;
+  }
+  
+  .ticket-booking__seating-chart {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .seating-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .seat-row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .seat {
+    width: 40px;
+    height: 40px;
+    background-color: #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .seat.selected {
+    background-color: #673ab7;
+    color: white;
+  }

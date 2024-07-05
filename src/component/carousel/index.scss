@@ -1,0 +1,39 @@
+.carousel{
+    
+}
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+  .event-details{
+    display: flex;
+    font-size: 20px;
+    gap:20px;
+    &__left{
+      padding-left: 20px;
+      padding-top: 5px;
+      display:flex;
+      flex-direction: column;
+    }
+    &__right{
+      display: flex;
+      flex-direction: column;
+      gap:5px;
+      padding-top: 5px;
+    }
+  }
+  

@@ -1,0 +1,32 @@
+.header{
+    // background-color: transparent;
+    // background: linear-gradient(90deg, rgba(48,19,78,1) 72%, rgba(112,45,180,1) 100%);
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    &__left{
+        padding-left:100px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    &__right{
+        padding-right: 30px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        ul{
+            color:white;
+            display: flex;
+            align-items: center;
+            gap:25px;
+            list-style: none;
+            a{
+                color:white;
+                text-decoration: none; 
+                font-size: 20px;
+            }
+        }
+    }
+}

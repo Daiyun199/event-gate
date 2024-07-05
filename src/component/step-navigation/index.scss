@@ -1,0 +1,69 @@
+.step-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .step-item {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Đảm bảo nội dung ở giữa */
+    position: relative;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    color: #555;
+    transition: background-color 0.3s ease;
+    width: 15%; /* Thiết lập chiều rộng cố định (chia đều cho 4 bước) */
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .step-item.active {
+    background-color: #5a5a5a;
+    color: white;
+  }
+  
+  .step-item .step-number {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .step-item .step-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .step-item .step-title {
+    font-weight: bold;
+  }
+  
+  .step-item .step-subtitle {
+    font-size: 0.8rem;
+    color: #888;
+  }
+  
+  .step-item.active .step-subtitle {
+    color: #ddd;
+  }
+  
+  .step-arrow {
+    position: absolute;
+    right: -20px;
+    width: 0;
+    height: 0;
+    border-top: 28px solid transparent;
+    border-bottom: 28px solid transparent;
+    border-left: 20px solid #f4f4f4;
+  }
+  
+  .step-item.active ~ .step-arrow {
+    border-left-color: #f4f4f4;
+  }
+  
+  .step-item.active + .step-arrow {
+    border-left-color: #5a5a5a;
+    right: -21px;
+  }

@@ -1,0 +1,36 @@
+.home{
+    background-color: white;
+    background-image: url("https://scontent.fsgn19-1.fna.fbcdn.net/v/t1.15752-9/446021772_7609078902546894_4157795884938910442_n.png?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFQ5JM549TaokZSJ_ETMLWPLA8Pu-CrL_gsDw-74Ksv-OPnRwECY3p9nc_EM55nzKPmpY_yT1rvAkGcLLO0yliw&_nc_ohc=W85HaHRQPkUQ7kNvgFHBgT2&_nc_ht=scontent.fsgn19-1.fna&oh=03_Q7cD1QEp05wCBinXfZ8LxoCsS_P_pbCxxu_xy0z9u8sep9BvZQ&oe=6690A0AF");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    width:100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .wrapper{
+        background-color: transparent;
+        width: 80%;
+        height: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        
+    }
+    &__img{
+        flex:1;
+    }
+    &__info{
+        flex:1;
+        &__button{
+            display:flex;
+            gap:20px;
+            // .button1{
+            //     background-color:#c94cb0 important; 
+            // }
+        }
+        
+    }
+}
