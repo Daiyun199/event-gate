@@ -31,6 +31,21 @@
             //     background-color:#c94cb0 important; 
             // }
         }
-        
+    }
+     
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__title{
+        width: 80%;
+        font-size: 30px;
     }
 }

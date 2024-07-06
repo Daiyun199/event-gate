@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules'
+import { Autoplay, EffectCoverflow, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -55,14 +55,18 @@ function Carousel() {
                     slideShadows: true,
                 }}
                 pagination={true}
-                modules={[EffectCoverflow, Pagination]}
+                modules={[EffectCoverflow, Autoplay, Pagination]}
                 className="mySwiper"
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
             >
                 {datas.map((data) => {
                     const { day, month, year } = formatDate(data.startDate);
                     return (
                         <SwiperSlide key={data.eventId}>
-                            <Link to={`/detail/${data.eventId}`}>
+                            <Link to={`/detail/${data.eventId}`} style={{ textDecoration: 'none', color: 'white' }}>
                                 <img src={data.posterImage} />
                                 <div className="event-details">
                                     <div className="event-details__left">

@@ -2,6 +2,7 @@ import React from 'react'
 import "./index.scss"
 import Button from '../../component/button'
 import Carousel from '../../component/carousel'
+import FilterBar from '../../component/filterbar'
 
 function Home() {
     return (
@@ -23,7 +24,14 @@ function Home() {
                     </div>
                 </div>
             </div>
-
+            <div className='search-bar'>
+                <FilterBar />
+            </div>
+            <div className='box'>
+                <div className='box__title'>
+                    <span>UPCOMING EVENTS</span>
+                </div>
+            </div>
             <Carousel />
         </div>
     )
