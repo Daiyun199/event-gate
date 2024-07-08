@@ -178,8 +178,8 @@ function Buying_Ticket(id) {
                                     {row.map((seat, seatIndex) => (
                                         <div
                                             key={seat.label}
-                                            className={`seat ${selectedSeats.some(selected => selected.label === seat.label) ? 'selected' : ''}`}
-                                            onClick={() => handleSeatClick(seat)}
+                                            className={`seat ${seat.value === null ? 'unavailable' : selectedSeats.some(selected => selected.label === seat.label) ? 'selected' : ''}`}
+                                            onClick={() => seat.value !== null && handleSeatClick(seat)}
                                         >
                                             {seat.label}
                                         </div>

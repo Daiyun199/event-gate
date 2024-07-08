@@ -19,7 +19,7 @@ function Detail({ id }) {
             const response = await axios.get("https://eventgateapi.azurewebsites.net/api/event/" + params.id);
             // console.log(userRole.user.avatar);
             const role = userRole && userRole.user ? userRole.user.role : null;
-            console.log(role);
+
             // Set role, default to null if not defined
             setRole(role);
 

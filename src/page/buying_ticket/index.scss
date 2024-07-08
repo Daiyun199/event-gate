@@ -12,6 +12,11 @@
     color: #2b0b44;
     text-align: center;
   }
+  .seat.unavailable {
+    cursor: not-allowed;
+    background-color: #a9a9a9; // Màu xám đậm hơn
+}
+
   
   .location-time {
     text-align: center;
