@@ -1,24 +1,30 @@
-.carousel{
-    
+.carousel {
+  max-width: 100%; /* Đảm bảo không vượt quá chiều rộng màn hình */
+  overflow: hidden; /* Ẩn các phần tử bị tràn ra ngoài */
+  margin: auto; /* Đặt carousel ở giữa nếu cần */
 }
 
 .swiper {
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
+
   }
   
   .swiper-slide {
     background-position: center;
     background-size: cover;
-    width: 300px;
-    height: 300px;
-  }
-  
-  .swiper-slide img {
+    width: 300px; /* Chiều rộng cố định cho mỗi slide */
+    height: 400px; /* Chiều cao cố định cho mỗi slide */
+    overflow: hidden; /* Ẩn phần tử bị tràn ra ngoài */
+}
+
+.swiper-slide img {
     display: block;
     width: 100%;
-  }
+    height: 80%; /* Đặt chiều cao để hình ảnh lấp đầy phần lớn slide */
+    object-fit: cover; /* Đảm bảo hình ảnh giữ tỷ lệ và lấp đầy slide */
+}
   .event-details{
     display: flex;
     font-size: 20px;

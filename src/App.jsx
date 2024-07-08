@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./App.css"
 import Login from './page/login'
 import Button from './component/button'
@@ -17,8 +17,21 @@ import EventManagement from './page/event-management'
 import Carousel from './component/carousel'
 import StepNavigation from './component/step-navigation'
 import CreateEvent from './page/create-event'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser } from './redux/features/userSlice'
 
 function App() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user); // Lấy thông tin người dùng từ Redux store
+
+  useEffect(() => {
+    // Khôi phục trạng thái đăng nhập từ Local Storage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+      dispatch(setUser(userData)); // Cập nhật Redux store với thông tin từ Local Storage
+    }
+  }, [dispatch]);
   const router = createBrowserRouter([
     {
       path: "/", // Thêm path mới
@@ -53,9 +66,9 @@ function App() {
       children: [
         {
           path: "/detail/:id",
-          element: <Detail role='admin' />,
+          element: <Detail role='customer' />,
         }, {
-          path: "/buying-ticket",
+          path: "/buying-ticket/:id",
           element: <Buying_Ticket />,
         },
         {
@@ -77,6 +90,7 @@ function App() {
   return (
     <RouterProvider router={router} />
   )
+
 }
 
 export default App

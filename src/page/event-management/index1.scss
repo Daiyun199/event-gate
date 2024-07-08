@@ -21,9 +21,9 @@
         }
         &__right{
             flex:4;
-       
             display:flex;
             flex-direction: column;
+            width: 100%;
             &__top{
                 flex:1;
                 background-color: #321055;
@@ -33,7 +33,13 @@
                 align-items: center;
             }
             &__bottom{
-                flex:7;
+              
+                height: 100%; /* Sử dụng toàn bộ chiều cao có sẵn */
+                display: block;
+                flex: 7; /* Chiếm 7 phần của không gian có sẵn */
+                max-width: 100%; /* Đảm bảo không vượt quá chiều rộng màn hình */
+                overflow: hidden; /* Đảm bảo phần tử không vượt quá chiều rộng màn hình */
+            
             }
         }
     }

@@ -17,8 +17,10 @@ const getBase64 = (file) =>
     });
 
 function CreateEvent() {
+
     const [eventType, setEventType] = useState([]);
-    const [data, setData] = useState([]);
+    const [eventType2, setEventType2] = useState([]);
+    const [dataSource, setData] = useState([]);
     const [form] = useForm();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleOpenModal = () => {
@@ -43,16 +45,23 @@ function CreateEvent() {
         setPreviewOpen(true);
     };
     async function handleSubmit(values) {
-        const response = await uploadFile(values.poster.file.originFileObj);
-        const responsePost = await axios.post("https://eventgateapi.azurewebsites.net/api/Event", values);
+        console.log(values);
+        console.log(values.posterImage.file.originFileObj);
+        const response = await uploadFile(values.posterImage.file.originFileObj);
+        values.posterImage = response;
+        const eventType = await axios.get("https://eventgateapi.azurewebsites.net/api/EventType/" + values.eventTypeID);
+        setEventType2(eventType.data.eventTypeName);
         setData(values);
+        const responsePost = await axios.post("https://eventgateapi.azurewebsites.net/api/Event", values);
+        console.log(responsePost);
         setIsModalOpen(false);
         form.resetFields();
-
     }
     async function fetchData() {
+
         const response = await axios.get("https://eventgateapi.azurewebsites.net/api/EventType");
         setEventType(response.data);
+
     }
     useEffect(function () {
         fetchData();
@@ -90,26 +99,38 @@ function CreateEvent() {
                     <h1 className='wrapper-event__right__form__header'>Event Information</h1>
                     <div className="wrapper-event__right__form__top">
                         <div className="wrapper-event__right__form__top__img">
-                            <img src="https://i.pinimg.com/564x/7f/64/40/7f64400e5b340ef5e040f998fbba07a6.jpg"
+                            <img src={dataSource.posterImage}
                             />
                         </div>
                         <div className="wrapper-event__right__form__top__info">
                             <div className="wrapper-event__right__form__top__info__container">
                                 <div className="wrapper-event__right__form__top__info__container__row">
                                     <div className="wrapper-event__right__form__top__info__container__row__label">Event Name</div>
-                                    <div className="wrapper-event__right__form__top__info__container__row__value">{data.eventName}</div>
+                                    <div className="wrapper-event__right__form__top__info__container__row__value">{dataSource.eventName}</div>
                                 </div>
                                 <div className="wrapper-event__right__form__top__info__container__row">
                                     <div className="wrapper-event__right__form__top__info__container__row__label">Location</div>
-                                    <div className="wrapper-event__right__form__top__info__container__row__value"> {data.location}</div>
+                                    <div className="wrapper-event__right__form__top__info__container__row__value"> {dataSource.location}</div>
                                 </div>
                                 <div className="wrapper-event__right__form__top__info__container__row">
                                     <div className="wrapper-event__right__form__top__info__container__row__label">Event Type</div>
-                                    <div className="wrapper-event__right__form__top__info__container__row__value">{data.Event}</div>
+                                    <div className="wrapper-event__right__form__top__info__container__row__value">{eventType2}</div>
                                 </div>
                                 <div className="wrapper-event__right__form__top__info__container__row">
                                     <div className="wrapper-event__right__form__top__info__container__row__label">Description</div>
-                                    <div className="wrapper-event__right__form__top__info__container__row__value"></div>
+                                    <div className="wrapper-event__right__form__top__info__container__row__value">{dataSource.content}</div>
+                                </div>
+                                <div className="wrapper-event__right__form__top__info__container__row">
+                                    <div className="wrapper-event__right__form__top__info__container__row__label">Start Date</div>
+                                    <div className="wrapper-event__right__form__top__info__container__row__value">
+                                        {dataSource.startDate ? dataSource.startDate.$d.toString() : ''}
+                                    </div>
+                                </div>
+                                <div className="wrapper-event__right__form__top__info__container__row">
+                                    <div className="wrapper-event__right__form__top__info__container__row__label">End Date</div>
+                                    <div className="wrapper-event__right__form__top__info__container__row__value">
+                                        {dataSource.endDate ? dataSource.endDate.$d.toString() : ''}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +204,7 @@ function CreateEvent() {
                                 <DatePicker format="DD/MM/YYYY" />
                             </Form.Item>
                             <Form.Item label="Quantity-Ticket" name="ticketQuantity" required>
-                                <InputNumber min={0} />
+                                <InputNumber min={0} max={30} />
                             </Form.Item>
                             <Form.Item label="Price" name="price" required >
                                 <InputNumber min={0} />

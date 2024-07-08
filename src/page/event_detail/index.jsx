@@ -7,14 +7,22 @@ import Footer from '../../component/footer';
 import Button from '../../component/button';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-function Detail({ role = 'customer', id }) {
+function Detail({ id }) {
     const [eventDetailData, setEventDetailData] = useState([]);
     const params = useParams();
+    const userRole = useSelector((state) => state.user);
+    const [role, setRole] = useState([]);
     async function fetchData() {
         try {
             const response = await axios.get("https://eventgateapi.azurewebsites.net/api/event/" + params.id);
-            console.log(response.data);
+            // console.log(userRole.user.avatar);
+            const role = userRole && userRole.user ? userRole.user.role : null;
+            console.log(role);
+            // Set role, default to null if not defined
+            setRole(role);
+
             setEventDetailData([response.data]); // Đảm bảo eventDetailData là mảng chứa một đối tượng
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -66,16 +74,16 @@ function Detail({ role = 'customer', id }) {
                                     <p><strong>Price:</strong>{eventDetailData[0].price} $</p>
                                 </div>
                                 <div>
-                                    {role === 'admin' ? (
+                                    {role === 'Staff' ? (
                                         <>
                                             <Button className="delete-button" variant='custom2' buttonText="Delete" customColor="black" />
                                             <Button className="edit-button" variant='custom2' buttonText={`\u00A0Edit\u00A0`} customColor="black" />
                                         </>
-                                    ) : (
-                                        <Link to="/buying-ticket">
+                                    ) : role === 'Member' ? (
+                                        <Link to={`/buying-ticket/${eventDetailData[0].eventId}`} style={{ textDecoration: 'none', color: 'white' }}>
                                             <Button className="book-ticket-button" variant='custom2' buttonText="Book Ticket" customColor="black" />
                                         </Link>
-                                    )}
+                                    ) : null}
                                 </div>
                             </div>
                         </>

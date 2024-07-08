@@ -1,5 +1,5 @@
 import React from 'react'
-import "./index.scss"
+import "./index1.scss"
 import Menu from '../../component/menu'
 import Button from '../../component/button'
 import Carousel from '../../component/carousel'
@@ -22,12 +22,12 @@ function EventManagement() {
                             <Button variant='custom2' buttonText="Pending" customColor="#9867C9" width="160px" height="50px" padding="7px 2px" borderStyle="15px" />
                         </div>
                         <div className="container__bottom__right__bottom">
-                            <Carousel />
 
                         </div>
                     </div>
                 </div>
             </div>
+            <Carousel />
         </div>
     )
 }
