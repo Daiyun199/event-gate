@@ -11,18 +11,22 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload;
+      localStorage.setItem('user', JSON.stringify(action.payload));
     },
     clearUser: (state) => {
       state.user = null;
       state.isLoggedIn = false;
+      localStorage.removeItem('user');
     },
     login(state, action) {
       state.isLoggedIn = true;
       state.user = action.payload;
+      localStorage.setItem('user', JSON.stringify(action.payload));
     },
     logout(state) {
       state.isLoggedIn = false;
       state.user = null;
+      localStorage.removeItem('user');
     },
   },
 });
