@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import "./index.scss"
 import Footer from '../../component/footer';
 import Button from '../../component/button';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 function Buying_Ticket(id) {
     const user = useSelector((state) => state.user);
+    const navigate = useNavigate();
     const [seats, setSeats] = useState([
         // Define seat rows with default values
         [{ label: 'A1', value: null }, { label: 'A2', value: null }, { label: 'A3', value: null }, { label: 'A4', value: null }, { label: 'A5', value: null }, { label: 'A6', value: null }],
@@ -66,6 +67,7 @@ function Buying_Ticket(id) {
         } catch (error) {
             console.error("Error fetching data:", error);
         }
+        navigate("/payment");
     }
     const handleChange = (event) => {
         setSelectedMethod(event.target.value);
@@ -119,6 +121,7 @@ function Buying_Ticket(id) {
                 console.error("Error saving seats selection:", error);
                 alert("There was an error saving your seats selection.");
             });
+
     };
     return (
         <div>
