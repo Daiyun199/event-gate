@@ -12,21 +12,25 @@ const userSlice = createSlice({
       state.isLoggedIn = true;
       state.user = action.payload;
       localStorage.setItem('user', JSON.stringify(action.payload));
+      localStorage.setItem('loginTimestamp', Date.now());
     },
     clearUser: (state) => {
       state.user = null;
       state.isLoggedIn = false;
       localStorage.removeItem('user');
+      localStorage.removeItem('loginTimestamp');
     },
     login(state, action) {
       state.isLoggedIn = true;
       state.user = action.payload;
       localStorage.setItem('user', JSON.stringify(action.payload));
+      localStorage.setItem('loginTimestamp', Date.now());
     },
     logout(state) {
       state.isLoggedIn = false;
       state.user = null;
       localStorage.removeItem('user');
+      localStorage.removeItem('loginTimestamp');
     },
   },
 });

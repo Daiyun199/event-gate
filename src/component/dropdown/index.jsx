@@ -21,13 +21,14 @@ function Dropdown() {
         try {
             // Assume user object is available and has the structure user.user.avatar
             const avatar = user.user.avatar;
-            console.log(user.user);
+
             // Check if avatar is null or undefined
             if (avatar) {
                 setAvatar(avatar);
             } else {
                 setAvatar(null); // Explicitly set avatar to null if it's null or undefined
             }
+
         } catch (error) {
             console.error("Error fetching data:", error);
             // Optionally handle setting avatar to null in case of an error

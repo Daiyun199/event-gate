@@ -1,0 +1,26 @@
+.qr-codes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.qr-code-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.qr-code-item img {
+    margin-bottom: 10px;
+}
+
+.qr-code-item pre {
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 200px; /* Adjust as needed */
+}

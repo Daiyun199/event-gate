@@ -19,6 +19,8 @@ import StepNavigation from './component/step-navigation'
 import CreateEvent from './page/create-event'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from './redux/features/userSlice'
+import useAutoLogout from './component/autoLogout'
+import Ticket_Detail from './page/ticket-detail'
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ function App() {
       dispatch(setUser(userData)); // Cập nhật Redux store với thông tin từ Local Storage
     }
   }, [dispatch]);
+  useAutoLogout();
   const router = createBrowserRouter([
     {
       path: "/", // Thêm path mới
@@ -72,7 +75,7 @@ function App() {
           element: <Buying_Ticket />,
         },
         {
-          path: "/payment",
+          path: "/payment/:id",
           element: <Payment />,
         },
         {
@@ -82,6 +85,9 @@ function App() {
         {
           path: "/create-event",
           element: <CreateEvent />,
+        }, {
+          path: "/ticket/:id",
+          element: <Ticket_Detail />,
         }
 
       ]

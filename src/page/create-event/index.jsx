@@ -136,7 +136,7 @@ function CreateEvent() {
                         </div>
                     </div>
                     <div className="wrapper-event__right__form__bot">
-                        <div className="wrapper-event__right__form__bot__img">
+                        {/* <div className="wrapper-event__right__form__bot__img">
                             <img src="https://i.pinimg.com/564x/ee/3f/59/ee3f5998b83ba242e44795d6f7e8933b.jpg"
                             />
                         </div>
@@ -157,7 +157,7 @@ function CreateEvent() {
 
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="wrapper-event__right__button">
@@ -204,7 +204,13 @@ function CreateEvent() {
                                 <DatePicker format="DD/MM/YYYY" />
                             </Form.Item>
                             <Form.Item label="Quantity-Ticket" name="ticketQuantity" required>
-                                <InputNumber min={0} max={30} />
+                                <InputNumber
+                                    min={0}
+                                    max={100}
+                                    step={10}
+                                    formatter={value => `${Math.floor(value / 10) * 10}`}
+                                    parser={value => value.replace(/\D/g, '')}
+                                />
                             </Form.Item>
                             <Form.Item label="Price" name="price" required >
                                 <InputNumber min={0} />

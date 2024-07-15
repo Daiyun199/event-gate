@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import "./index.scss"
 import Button from '../../component/button'
+import { toast } from "react-toastify";
 import {
     FacebookOutlined, AppleOutlined, GoogleOutlined, TwitterOutlined
 } from '@ant-design/icons';
@@ -26,6 +27,8 @@ function Login({ title }) {
     }
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [rememberMe, setRememberMe] = useState(false);
@@ -34,14 +37,14 @@ function Login({ title }) {
         try {
             const response = await axios.post('https://eventgateapi.azurewebsites.net/api/Authentication/login', {
                 username: username,
-                password: password,
+                password: password
             });
 
             const userData = response.data;
 
             // Lưu thông tin người dùng vào Redux store
             dispatch(setUser(userData));
-
+            toast.success("Login successfully");
             // Điều hướng người dùng đến trang chính hoặc bất kỳ trang nào bạn muốn
             navigate('/'); // Thay thế '/dashboard' bằng đường dẫn bạn muốn điều hướng tới
         } catch (error) {
@@ -49,16 +52,57 @@ function Login({ title }) {
             // Xử lý lỗi nếu có
         }
     };
-    const handleLoginGoogle = () => {
+    const handleSignup = async () => {
+        try {
+            const response = await axios.post("https://eventgateapi.azurewebsites.net/api/Authentication/register/member", {
+                username: username,
+                email: email,
+                password: password,
+                confirmedPassword: confirmPassword
+            });
+            toast.success("Register successfully");
+            navigate("/");
+        } catch (err) {
+            console.log();
+            // Check if errors is an object and display each error message
+            const errors = err.response.data.errors;
+            if (errors && typeof errors === 'object') {
+                Object.keys(errors).forEach((key) => {
+                    errors[key].forEach((message) => {
+                        toast.error(message);
+                    });
+                });
+            } else {
+                toast.error(err.response.data);
+            }
+        }
+    };
+
+    const handleLoginGoogle = async () => {
         signInWithPopup(auth, googleProvider)
-            .then((result) => {
+            .then(async (result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 // const token = credential.accessToken;
                 // // The signed-in user info.
                 // const user = result.user;
                 // // IdP data available using getAdditionalUserInfo(result)
-                console.log(result.user);
+                console.log(result.user.email);
+                const response = await axios.post('https://eventgateapi.azurewebsites.net/api/Authentication/loginByGoogleMail',
+                    { email: result.user.email }, // Gửi dữ liệu dưới dạng JSON
+                    {
+                        headers: {
+                            'Content-Type': 'application/json', // Sử dụng application/json
+                        },
+                    }
+                );
+                const userData = response.data;
+
+                // Lưu thông tin người dùng vào Redux store
+                dispatch(setUser(userData));
+                toast.success("Login successfully");
+                // Điều hướng người dùng đến trang chính hoặc bất kỳ trang nào bạn muốn
+                navigate('/'); // Thay thế '/dashboard' bằng đường dẫn bạn muốn điều hướng tới
                 // ...
             }).catch((error) => {
                 console.log(error);
@@ -72,6 +116,49 @@ function Login({ title }) {
                 // ...
             });
     }
+    const handleRegisterGoogle = async () => {
+        signInWithPopup(auth, googleProvider)
+            .then(async (result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                // const token = credential.accessToken;
+                // // The signed-in user info.
+                // const user = result.user;
+                // // IdP data available using getAdditionalUserInfo(result)
+                console.log(result.user.displayName.replace(/\s+/g, ''));
+                const response = await axios.post('https://eventgateapi.azurewebsites.net/api/Authentication/register/member/byGG',
+                    {
+                        email: result.user.email,
+                        username: result.user.displayName.replace(/[\s()"]/g, ''),
+                        password: "",
+                        confirmedPassword: "",
+                        avatar: result.user.photoURL,
+                    }, // Gửi dữ liệu dưới dạng JSON
+                    {
+                        headers: {
+                            'Content-Type': 'application/json', // Sử dụng application/json
+                        },
+                    }
+                );
+                toast.success("Register successfully");
+                // Điều hướng người dùng đến trang chính hoặc bất kỳ trang nào bạn muốn
+                navigate('/'); // Thay thế '/dashboard' bằng đường dẫn bạn muốn điều hướng tới
+                // ...
+            }).catch((error) => {
+                console.log(error);
+                const errors = error.response.data.errors;
+                if (errors && typeof errors === 'object') {
+                    Object.keys(errors).forEach((key) => {
+                        errors[key].forEach((message) => {
+                            toast.error(message);
+                        });
+                    });
+                } else {
+                    toast.error(error.response.data);
+                }
+            });
+    }
+    const handleClick = title === 'Login' ? handleLoginGoogle : handleRegisterGoogle;
 
     return (
         <div className='login'>
@@ -80,7 +167,7 @@ function Login({ title }) {
                 <div className="login__form">
                     <h1>{title === 'Login' ? 'Log in' : 'Sign up'}</h1>
                     <div className="login__form__input">
-                        <label htmlFor="email">Email address or user name</label>
+                        <label htmlFor="user_name">User name</label>
                         <div className="input-with-addon">
                             <input
                                 type="text"
@@ -88,7 +175,7 @@ function Login({ title }) {
                                 onChange={(e) => setUsername(e.target.value)}
                                 onKeyDown={handleKeyDown}
                             />
-                            <span>@fpt.edu.vn</span>
+
                         </div>
                     </div>
                     <div className="login__form__input">
@@ -101,10 +188,27 @@ function Login({ title }) {
                         />
                     </div>
                     {title === 'Signup' && (
-                        <div className="login__form__input">
-                            <label htmlFor="confirmPassword">Confirm Password</label>
-                            <input type="password" required />
-                        </div>
+                        <>
+                            <div className="login__form__input">
+                                <label htmlFor="confirmPassword">Confirm Password</label>
+                                <input type="password" required
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                            </div>
+                            <div className="login__form__input">
+                                <label htmlFor="email">Email</label>
+                                <div className="input-with-addon">
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                    <span>@fpt.edu.vn</span>
+                                </div>
+                            </div>
+                        </>
                     )}
                     <div className="login__form__remember">
                         <Checkbox
@@ -124,7 +228,7 @@ function Login({ title }) {
                     <div className='login__form__button'>
                         <Button
                             variant="Login"
-                            onClick={handleLogin}
+                            onClick={title === 'Login' ? handleLogin : handleSignup}
                             buttonText={title === 'Login' ? 'Log In' : 'Sign Up'}
                         >
                         </Button>
@@ -143,7 +247,7 @@ function Login({ title }) {
                     <div className="login__form__icon">
                         <FacebookOutlined style={{ fontSize: '30px', color: '#000000' }} />
                         <AppleOutlined style={{ fontSize: '30px', color: '#000000' }} />
-                        <GoogleOutlined style={{ fontSize: '30px', color: '#000000' }} onClick={handleLoginGoogle} />
+                        <GoogleOutlined style={{ fontSize: '30px', color: '#000000' }} onClick={handleClick} />
                         <TwitterOutlined style={{ fontSize: '30px', color: '#000000' }} />
                     </div>
                 </div>
