@@ -29,7 +29,7 @@ function Header({ showRight, backgroundColor, position }) {
             <div className="header__left">
                 <Link to="/">
                     <img
-                        src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t1.15752-9/446045608_2189961618037846_5238267145574346834_n.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHQVF3QQbh2AjEcHW3NaUxvhiG1Y6omHtCGIbVjqiYe0FSBvSxX5WJnJdtOg_7DJ8JjcfGJBYcy_AuGBdAIMutc&_nc_ohc=yVbEEML6oIkQ7kNvgG08BmA&_nc_ht=scontent.fsgn19-1.fna&oh=03_Q7cD1QFu_HIRpSnjbNXTmklfXYJy-vcsQSGZEZtP9YN25SHaKw&oe=6690B5D6"
+                        src="https://cdn.discordapp.com/attachments/941948264285110324/1262325328307687506/446045608_2189961618037846_5238267145574346834_n.png?ex=66962f93&is=6694de13&hm=5e980022a90210d9f80846859ed8118d8672b1a12843c8a9a1502be1b1c77c49&"
                         alt="Logo"
                     />
                 </Link>
