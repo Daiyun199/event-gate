@@ -114,7 +114,7 @@ function Buying_Ticket(id) {
             .then(response => {
                 // Xử lý phản hồi từ server
                 console.log("Response from server:", response.data);
-                toast.successu("Order successful");
+                toast.success("Order successful");
                 navigate("/payment/" + response.data);
                 // alert("Seats selection saved successfully!");
 
