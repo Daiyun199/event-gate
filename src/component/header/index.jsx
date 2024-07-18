@@ -29,7 +29,7 @@ function Header({ showRight, backgroundColor, position }) {
             <div className="header__left">
                 <Link to="/">
                     <img
-                        src="https://cdn.discordapp.com/attachments/941948264285110324/1262325328307687506/446045608_2189961618037846_5238267145574346834_n.png?ex=66962f93&is=6694de13&hm=5e980022a90210d9f80846859ed8118d8672b1a12843c8a9a1502be1b1c77c49&"
+                        src="https://i.imgur.com/JdSEEbB.png"
                         alt="Logo"
                     />
                 </Link>
